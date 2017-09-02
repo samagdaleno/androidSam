@@ -1,5 +1,6 @@
 package com.example.sam.testapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -23,18 +24,10 @@ public class movieListActivity extends AppCompatActivity {
         oListView=(ListView) findViewById(R.id.lv_movieList);
         oMovieAdapter=new MovieAdapter(this);
         oListView.setAdapter(oMovieAdapter);
+        Intent intent = getIntent();
 
-
-        ArrayList<Movie> movieArray = new ArrayList<Movie>();
-        Movie newMovie = new Movie(
-                "Sam Test",
-                "121 Min",
-                "Sam Magdaleno",
-                "New Wave",
-                "05/08/54"
-        );
-
-        movieArray.add(newMovie);
+        ArrayList<Movie> movieArray = (ArrayList<Movie>)getIntent().getSerializableExtra("movieList");
+        //ArrayList<Movie> movieArray = new ArrayList<Movie>();
         fillMovieDatabase(movieArray);
     }
 
@@ -42,7 +35,7 @@ public class movieListActivity extends AppCompatActivity {
 
     private void fillMovieDatabase(ArrayList<Movie> lMovies)
     {
-        oMovieAdapter.clear();
+        //oMovieAdapter.clear();
 
         for(Movie oMovie: lMovies)
         {

@@ -1,10 +1,12 @@
 package com.example.sam.testapp.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by Sam on 25/08/2017.
  */
 
-public class Movie {
+public class Movie implements Serializable {
 
     public Movie(String movieName, String runtime, String director, String genre, String releaseDate) {
         this.movieName = movieName;

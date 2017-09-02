@@ -15,10 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.sam.testapp.Models.Movie;
+import com.example.sam.testapp.Models.MovieAdapter;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public ArrayList<Movie> movieList = new ArrayList<Movie>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                EditText editText = (EditText) findViewById(R.id.txtName);
+                String message = editText.getText().toString();
+
+
+                Movie oMovie = new Movie(
+                        message,
+                        "121 Min",
+                        "Sam Magdaleno",
+                        "New Wave",
+                        "05/08/54"
+                );
+
+                movieList.add(oMovie);
                 Intent intentMain = new Intent(getApplicationContext(), movieListActivity.class);
+                intentMain.putExtra("movieList", movieList);
+
                 startActivity(intentMain);
             }
 
