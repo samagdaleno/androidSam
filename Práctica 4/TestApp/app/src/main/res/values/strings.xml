@@ -1,0 +1,8 @@
+
+
+<resources>
+    <string name="app_name">Sam App</string>
+    <string name="action_settings">Settings</string>
+    <string name="txt_hint">Sam: La Película</string>
+    <string name="btnClicktxt">Picame!</string>
+</resources>
