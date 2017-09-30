@@ -16,6 +16,16 @@ public class Customer implements Parcelable {
     private int operations;
     private boolean flag = true;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
     public int getTurn() {
         return turn;
     }

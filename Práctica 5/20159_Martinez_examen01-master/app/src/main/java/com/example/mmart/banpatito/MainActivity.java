@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listViewCustomer);
         customerAdapter = new CustomerAdapter(this);
         listView.setAdapter(customerAdapter);
+
         db.open();
         ArrayList<Customer>DB_Customers = db.getAllCustomers();
         for (Customer cus : DB_Customers){
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setClickable(true);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, final int position, long arg3) {
                 AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
                 adb.setTitle("Eliminar.");
                 adb.setMessage("¿Estás seguro?");
@@ -54,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         db.open();
-                        db.deleteCustomer(positionToRemove);
+                        Customer toDelete = customers.get(positionToRemove);
+                        db.deleteCustomer(toDelete.getId());
+
                         customerAdapter.clear();
                         customers.clear();
                         ArrayList<Customer>DB_Customers = db.getAllCustomers();
                         for (Customer cus : DB_Customers){
                             customerAdapter.add(cus);
-                            customerAdapter.notifyDataSetChanged();
                             customers.add(cus);
+                            customerAdapter.notifyDataSetChanged();
                         }
                         db.close();
                     }});

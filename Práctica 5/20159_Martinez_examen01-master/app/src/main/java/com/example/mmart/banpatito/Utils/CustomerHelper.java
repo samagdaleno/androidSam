@@ -77,6 +77,7 @@ public class CustomerHelper {
         oCustomer.setName(cursor.getString(cursor.getColumnIndex(DBUtils.CUSTOMER_NAME)));
         oCustomer.setOperations(cursor.getInt(cursor.getColumnIndex(DBUtils.CUSTOMER_OPERATIONS)));
         oCustomer.setTurn(cursor.getInt(cursor.getColumnIndex(DBUtils.CUSTOMER_POSTIION)));
+        oCustomer.setId(cursor.getInt(cursor.getColumnIndex(DBUtils.CUSTOMER_ID)));
         return oCustomer;
     }
 }
